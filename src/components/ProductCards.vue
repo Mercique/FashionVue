@@ -1,6 +1,6 @@
 <template>
   <div class="product__cards">
-    <div class="card" v-for="(card, idx) in cards" :key="idx">
+    <div class="card" v-for="card in cards" :key="card.id">
       <a href="#" class="card__img-link">
         <img :src="getImgUrl(card.img)" class="card__img" :alt="card.alt" />
       </a>
@@ -11,7 +11,7 @@
         </p>
         <span class="card__price">${{ card.price }}.00</span>
       </div>
-      <a href="#" class="card__add-link">
+      <button type="button" class="card__add-btn">
         <svg
           width="27"
           height="25"
@@ -33,7 +33,7 @@
           />
         </svg>
         <span class="card__add-text">Add to Cart</span>
-      </a>
+      </button>
     </div>
   </div>
 </template>
@@ -49,9 +49,9 @@ export default {
   },
   methods: {
     getImgUrl(pic) {
-      return require('../assets/' + pic);
+      return require("../assets/" + pic);
     },
-  }
+  },
 };
 </script>
 
@@ -66,7 +66,7 @@ export default {
     width: 360px;
     background-color: #f8f8f8;
     transition: all 0.2s ease;
-    .card__add-link {
+    .card__add-btn {
       display: none;
     }
     .card__img {
@@ -78,7 +78,7 @@ export default {
       .card__img {
         filter: brightness(30%);
       }
-      .card__add-link {
+      .card__add-btn {
         width: 139px;
         height: 44px;
         display: flex;
