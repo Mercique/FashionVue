@@ -10,7 +10,13 @@
           <p class="main__p">
             Shop for items based on what we featured in this week
           </p>
-          <product-cards :cards="allCards"/>
+          <product-cards :cards="currentElements" />
+          <pagination
+            :cur="page"
+            :n="n"
+            :length="cards.length"
+            @paginate="changePage"
+          />
         </main>
       </div>
       <footer-comp />
@@ -24,16 +30,41 @@ import HeaderComp from "./components/HeaderComp.vue";
 import ProductCards from "./components/ProductCards.vue";
 import Sale from "./components/Sale.vue";
 import Top from "./components/Top.vue";
+import Pagination from "./components/Pagination.vue";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "App",
-  components: { HeaderComp, Top, Sale, FooterComp, ProductCards },
-  computed: mapGetters(["allCards"]),
-  methods: mapActions(["fetchCards"]),
+  components: {
+    HeaderComp,
+    Top,
+    Sale,
+    FooterComp,
+    ProductCards,
+    Pagination,
+  },
+  data() {
+    return {
+      page: 1,
+      n: 6,
+    };
+  },
+  computed: {
+    ...mapGetters({ cards: "allCards" }),
+    currentElements() {
+      const { n, page } = this;
+      return this.cards.slice(n * (page - 1), n * (page - 1) + n);
+    },
+  },
+  methods: {
+    ...mapActions(["fetchCards"]),
+    changePage(p) {
+      this.page = p;
+    },
+  },
   async mounted() {
     this.fetchCards();
-  }
+  },
 };
 </script>
 
