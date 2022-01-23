@@ -11,7 +11,7 @@
         </p>
         <span class="card__price">${{ card.price }}.00</span>
       </div>
-      <button type="button" class="card__add-btn">
+      <button type="button" class="card__add-btn" @click="addToCart(card)">
         <svg
           width="27"
           height="25"
@@ -39,6 +39,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   name: "ProductCards",
   props: {
@@ -48,9 +50,22 @@ export default {
     },
   },
   methods: {
+    ...mapMutations(["updateCart"]),
     getImgUrl(pic) {
       return require("../assets/" + pic);
     },
+    addToCart(card) {
+      const item = {
+        id: card.id,
+        img: card.img,
+        alt: card.alt,
+        title: card.title,
+        price: card.price,
+        count: 1
+      };
+
+      this.updateCart(item);
+    }
   },
 };
 </script>

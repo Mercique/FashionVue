@@ -48,16 +48,19 @@
           />
         </svg>
       </a>
-      <cart />
+      <cart :cart="allCart" />
     </div>
   </header>
 </template>
 
 <script>
 import Cart from './Cart.vue';
+import { mapGetters } from 'vuex'; 
+
 export default {
   components: { Cart },
   name: "HeaderComp",
+  computed: mapGetters(["allCart"])
 };
 </script>
 
