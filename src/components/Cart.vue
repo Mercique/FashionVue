@@ -34,4 +34,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.cart {
+  position: relative;
+  &-show {
+    width: 300px;
+    height: 500px;
+    position: absolute;
+    top: 60px;
+    right: -60px;
+    z-index: 100;
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0px 5px 8px 0 rgba(0, 0, 0, .16);
+    &::before {
+      content: '';
+      display: block;
+      width: 9px;
+      height: 9px;
+      position: absolute;
+      top: -6px;
+      right: 77px;
+      background-color: #fff;
+      border-top: 1px solid #e8e8e8;
+      border-left: 1px solid #e8e8e8;
+      transform: rotate(45deg);
+    }
+  }
+}
 </style>
