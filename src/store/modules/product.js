@@ -46,8 +46,6 @@ export default {
         fetchCards(ctx) {
             const cards = localDB;
 
-            console.log(cards);
-
             ctx.commit('updateCards', cards);
         }
     },

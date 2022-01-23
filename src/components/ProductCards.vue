@@ -116,6 +116,10 @@ export default {
             fill: #000000;
           }
         }
+        &:active {
+          border: 1px solid #c5c5c5;
+          background: #c5c5c5;
+        }
       }
     }
     &__box {
