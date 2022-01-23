@@ -1,3 +1,5 @@
+import localDB from '../../db/cards.json';
+
 export default {
     state: {
         cards: []
@@ -13,9 +15,8 @@ export default {
         }
     },
     actions: {
-        async fetchCards(ctx) {
-            const res = await fetch('../../db/cards.json');
-            const cards = await res.json();
+        fetchCards(ctx) {
+            const cards = localDB;
 
             console.log(cards);
 
