@@ -54,7 +54,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ cards: "allCards" }),
+    ...mapGetters({ cards: "getCards" }),
     currentElements() {
       const { n, page } = this;
       return this.cards.slice(n * (page - 1), n * (page - 1) + n);

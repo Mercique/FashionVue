@@ -1,53 +1,55 @@
 export default {
     state: {
-        cart: [],
-        cards: []
+        productCards: [],
+        productCart: [],
     },
     mutations: {
-        updateCards(state, payload) {
-            state.cards = payload;
+        AddToProductCards(state, payload) {
+            state.productCards = payload;
         },
-        updateCart(state, payload) {
+        AddToProductCart(state, payload) {
             let bool = true;
-            if (state.cart.length) {
-                state.cart.forEach(el => {
+            if (state.productCart.length) {
+                state.productCart.forEach(el => {
                     if (el.id == payload.id) {
                         el.count++;
                         bool = false;
                     }
                 });
                 if (bool) {
-                    state.cart.push(payload);
+                    state.productCart.push(payload);
                 }
             } else {
-                state.cart.push(payload);
+                state.productCart.push(payload);
             }
         },
         deleteItemFromCart(state, id) {
-            const index = state.cart.findIndex(el => el.id == id);
-            if (state.cart[index].count != 1) {
-                state.cart[index].count--;
+            const index = state.productCart.findIndex(el => el.id == id);
+            if (state.productCart[index].count != 1) {
+                state.productCart[index].count--;
             } else {
-                state.cart.splice(index, 1);
+                state.productCart.splice(index, 1);
             }
         }
     },
     getters: {
-        allCards(state) {
-            return state.cards;
+        getProductCartFullValuePrice: state => {
+            return state.productCart.reduce((prev, cur) => cur.price * cur.count + prev, 0);
         },
-        allCart(state) {
-            return state.cart;
+        getProductCartFullCount: state => {
+            return state.productCart.reduce((prev, cur) => prev + cur.count, 0);
         },
+        getCards: state => state.productCards,
+        getCart: state => state.productCart,
     },
     actions: {
         async fetchCards(ctx, url) {
             try {
                 const response = await fetch(url);
                 const data = await response.json();
-                ctx.commit("updateCards", data);
+                ctx.commit("AddToProductCards", data);
             } catch {
-                ctx.commit("updateCards", []);
+                ctx.commit("AddToProductCards", []);
             }
         }
     },

@@ -50,7 +50,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(["updateCart"]),
+    ...mapMutations(["AddToProductCart"]),
     getImgUrl(pic) {
       return require("../assets/" + pic);
     },
@@ -64,7 +64,7 @@ export default {
         count: 1
       };
 
-      this.updateCart(item);
+      this.AddToProductCart(item);
     }
   },
 };
