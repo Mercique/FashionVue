@@ -10,13 +10,16 @@
           <p class="main__p">
             Shop for items based on what we featured in this week
           </p>
-          <product-cards :cards="currentElements" />
-          <pagination
-            :cur="page"
-            :n="n"
-            :length="cards.length"
-            @paginate="changePage"
-          />
+          <p class="main__error" v-if="!cards.length">На данный момент товаров нет!</p>
+          <div class="main__show" v-else>
+            <product-cards :cards="currentElements" />
+            <pagination
+              :cur="page"
+              :n="n"
+              :length="cards.length"
+              @paginate="changePage"
+            />
+          </div>
         </main>
       </div>
       <footer-comp />
@@ -45,6 +48,7 @@ export default {
   },
   data() {
     return {
+      url: "/json/cards.json",
       page: 1,
       n: 6,
     };
@@ -63,7 +67,7 @@ export default {
     },
   },
   async mounted() {
-    this.fetchCards();
+    this.fetchCards(this.url);
   },
 };
 </script>
@@ -106,6 +110,13 @@ export default {
     margin-bottom: 48px;
     text-align: center;
     color: #9f9f9f;
+  }
+  &__error {
+    text-align: center;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 35px;
+    color: #f16d7f;
   }
 }
 </style>

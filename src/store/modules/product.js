@@ -1,5 +1,3 @@
-import localDB from '../../db/cards.json';
-
 export default {
     state: {
         cart: [],
@@ -43,10 +41,14 @@ export default {
         },
     },
     actions: {
-        fetchCards(ctx) {
-            const cards = localDB;
-
-            ctx.commit('updateCards', cards);
+        async fetchCards(ctx, url) {
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                ctx.commit("updateCards", data);
+            } catch {
+                ctx.commit("updateCards", []);
+            }
         }
     },
 }
