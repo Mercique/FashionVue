@@ -85,6 +85,8 @@ export default {
       display: none;
     }
     .card__img {
+      width: 100%;
+      height: 420px;
       transition: all 0.2s ease;
     }
     &:hover {
