@@ -10,7 +10,9 @@
           <p class="main__p">
             Shop for items based on what we featured in this week
           </p>
-          <p class="main__error" v-if="!cards.length">На данный момент товаров нет!</p>
+          <p class="main__error" v-if="!cards.length">
+            На данный момент товаров нет!
+          </p>
           <div class="main__show" v-else>
             <product-cards :cards="currentElements" />
             <pagination

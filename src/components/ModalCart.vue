@@ -56,7 +56,7 @@ export default {
       isVisibleCart: false,
     };
   },
-  computed: mapGetters({ totalPrice: "getProductCartFullValuePrice"}),
+  computed: mapGetters({ totalPrice: "getProductCartFullValuePrice" }),
   methods: {
     ...mapMutations(["deleteItemFromCart"]),
     getImgUrl(pic) {
