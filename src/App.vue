@@ -23,6 +23,7 @@
             />
           </div>
         </main>
+        <delivery />
       </div>
       <footer-comp />
     </div>
@@ -37,6 +38,7 @@ import Sale from "./components/Sale.vue";
 import Top from "./components/Top.vue";
 import Pagination from "./components/Pagination.vue";
 import { mapGetters, mapActions } from "vuex";
+import Delivery from './components/Delivery.vue';
 
 export default {
   name: "App",
@@ -47,6 +49,7 @@ export default {
     FooterComp,
     ProductCards,
     Pagination,
+    Delivery,
   },
   data() {
     return {
