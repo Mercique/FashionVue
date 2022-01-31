@@ -200,6 +200,15 @@ export default {
         padding-right: 22px;
         color: #FFFFFF;
         background-color: #F16D7F;
+        transition: all .3s ease;
+        &:hover {
+          border-color: #e6a0a9;
+          background: #e6a0a9;
+        }
+        &:active {
+          border-color: #7a3740;
+          background: #7a3740;
+        }
       }
     }
   }

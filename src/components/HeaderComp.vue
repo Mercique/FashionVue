@@ -1,10 +1,10 @@
 <template>
   <header class="header center">
     <div class="header__left">
-      <a href="index.html">
+      <router-link to="/home">
         <img src="../assets/images/logo/logo.svg" alt="logo" />
-      </a>
-      <a href="#">
+      </router-link>
+      <button type="button">
         <svg
           width="27"
           height="28"
@@ -17,24 +17,29 @@
             fill="#E8E8E8"
           />
         </svg>
-      </a>
+      </button>
     </div>
     <div class="header__right">
-      <a href="#" class="header__item">
-        <svg
-          width="32"
-          height="23"
-          viewBox="0 0 32 23"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M0 23V20.31H32V23H0ZM0 12.76V10.07H32V12.76H0ZM0 2.69V0H32V2.69H0Z"
-            fill="#E8E8E8"
-          />
-        </svg>
-      </a>
-      <a href="#" class="header__item">
+      <div class="header__right-menu">
+        <button type="button" class="header__item" @click="isVisibleMenu = !isVisibleMenu">
+          <svg
+            width="32"
+            height="23"
+            viewBox="0 0 32 23"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 23V20.31H32V23H0ZM0 12.76V10.07H32V12.76H0ZM0 2.69V0H32V2.69H0Z"
+              fill="#E8E8E8"
+            />
+          </svg>
+        </button>
+        <transition name="fade">
+          <modal-menu v-show="isVisibleMenu" :class="{ isVisibleMenu }" @updateBool="checkMenu" />
+        </transition>
+      </div>
+      <router-link to="/registration" class="header__item">
         <svg
           width="29"
           height="29"
@@ -47,7 +52,7 @@
             fill="#E8E8E8"
           />
         </svg>
-      </a>
+      </router-link>
       <div class="header__item header__cart">
         <button
           type="button"
@@ -71,7 +76,11 @@
           </div>
         </button>
         <transition name="fade">
-          <modal-cart :cart="cart" v-show="isVisibleCart" />
+          <modal-cart
+            :cart="cart"
+            v-show="isVisibleCart"
+            :class="{ isVisibleCart }"
+          />
         </transition>
       </div>
     </div>
@@ -81,16 +90,35 @@
 <script>
 import ModalCart from "./ModalCart.vue";
 import { mapGetters } from "vuex";
+import ModalMenu from './ModalMenu.vue';
 
 export default {
-  components: { ModalCart },
+  components: { ModalCart, ModalMenu },
   name: "HeaderComp",
   data() {
     return {
       isVisibleCart: false,
+      isVisibleMenu: false,
     };
   },
-  computed: mapGetters({ cart: "getCart", totalCount: "getProductCartFullCount" }),
+  watch: {
+    $route: {
+      deep: true,
+      handler() {
+        this.isVisibleCart = false;
+        this.isVisibleMenu = false;
+      },
+    },
+  },
+  computed: mapGetters({
+    cart: "getCart",
+    totalCount: "getProductCartFullCount",
+  }),
+  methods: {
+    checkMenu(bool) {
+      this.isVisibleMenu = bool;
+    }
+  },
 };
 </script>
 

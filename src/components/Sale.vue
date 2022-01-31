@@ -1,7 +1,7 @@
 <template>
   <div class="sale center">
     <div class="sale__content">
-      <a href="#" class="sale__link">
+      <router-link to="/dev" class="sale__link">
         <div class="sale__item">
           <div class="sale__text">
             <p class="sale__p">30% OFF</p>
@@ -9,8 +9,8 @@
           </div>
           <img src="../assets/images/sale/sale1.jpg" class="sale__img" alt="sale img" />
         </div>
-      </a>
-      <a href="#" class="sale__link">
+      </router-link>
+      <router-link to="/dev" class="sale__link">
         <div class="sale__item">
           <div class="sale__text">
             <p class="sale__p">HOT DEAL</p>
@@ -18,8 +18,8 @@
           </div>
           <img src="../assets/images/sale/sale2.jpg" class="sale__img" alt="sale img" />
         </div>
-      </a>
-      <a href="#" class="sale__link">
+      </router-link>
+      <router-link to="/dev" class="sale__link">
         <div class="sale__item">
           <div class="sale__text">
             <p class="sale__p">NEW ARRIVALS</p>
@@ -27,9 +27,9 @@
           </div>
           <img src="../assets/images/sale/sale3.jpg" class="sale__img" alt="sale img" />
         </div>
-      </a>
+      </router-link>
     </div>
-    <a href="#" class="sale__link">
+    <router-link to="/dev" class="sale__link">
       <div class="sale__item sale__item_big">
         <div class="sale__text">
           <p class="sale__p">LUXIROUS & TRENDY</p>
@@ -37,7 +37,7 @@
         </div>
         <img src="../assets/images/sale/salebig.jpg" class="sale__img" alt="sale img" />
       </div>
-    </a>
+    </router-link>
   </div>
 </template>
 

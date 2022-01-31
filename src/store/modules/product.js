@@ -10,7 +10,11 @@ export default {
     AddToProductCart(state, payload) {
       const idx = state.productCart.findIndex((el) => el.id == payload.id);
       if (idx != -1) {
-        state.productCart[idx].count++;
+        if (state.productCart[idx].count < 10) {
+          state.productCart[idx].count++;
+        } else {
+          return state.productCart[idx].count;
+        }
       } else {
         state.productCart.push(payload);
       }
@@ -23,6 +27,13 @@ export default {
         state.productCart.splice(index, 1);
       }
     },
+    deleteFullItemCountfromCart(state, id) {
+      const index = state.productCart.findIndex((el) => el.id == id);
+      state.productCart.splice(index, 1);
+    },
+    clearFullCart(state) {
+      state.productCart = [];
+    }
   },
   getters: {
     getProductCartFullValuePrice: (state) => {

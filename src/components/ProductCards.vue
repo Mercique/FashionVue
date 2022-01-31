@@ -1,15 +1,15 @@
 <template>
-  <section class="section">
+  <section class="section center">
     <h2 class="section__heading">Fetured Items</h2>
     <p class="section__p">
       Shop for items based on what we featured in this week
     </p>
     <p class="section__error" v-if="!cards.length">
-      На данный момент товаров нет!
+      There are no products at the moment!
     </p>
     <add-product-cards :cards="currentElements" v-else />
     <div class="section__link">
-      <a href="#" class="link">Browse All Product</a>
+      <router-link to="/dev" class="link">Browse All Product</router-link>
     </div>
   </section>
 </template>
@@ -46,6 +46,7 @@ export default {
     color: #9f9f9f;
   }
   &__error {
+    margin-bottom: 64px;
     text-align: center;
     font-weight: 700;
     font-size: 30px;

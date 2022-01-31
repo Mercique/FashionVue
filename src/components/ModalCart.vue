@@ -1,13 +1,13 @@
 <template>
   <div class="modal__cart">
-    <p class="modal__cart-empty" v-if="!cart.length">КОРЗИНА ПУСТА!</p>
+    <empty-cart v-if="!cart.length" />
     <div class="modal__cart-full" v-else>
       <div class="modal__cart-item" v-for="item in cart" :key="item.id">
-        <div class="modal__cart-item-img">
+        <router-link to="/dev" class="modal__cart-item-img">
           <img :src="getImgUrl(item.img)" :alt="item.alt" />
-        </div>
+        </router-link>
         <div class="modal__cart-item-info">
-          <p class="modal__cart-item-title">{{ item.title }}</p>
+          <router-link to="/dev" class="modal__cart-item-title">{{ item.title }}</router-link>
           <span class="modal__cart-item-price"
             >{{ item.count }} x ${{ item.price }}</span
           >
@@ -36,14 +36,17 @@
         <span class="modal__cart-total-text">TOTAL:</span>
         <span class="modal__cart-total-price">{{ totalPrice }}$</span>
       </div>
+      <router-link to="/cart" class="modal__cart-go">Go To Cart</router-link>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
+import EmptyCart from './EmptyCart.vue';
 
 export default {
+  components: { EmptyCart },
   name: "ModalCart",
   props: {
     cart: {
@@ -51,19 +54,14 @@ export default {
       default: () => [],
     },
   },
-  data() {
-    return {
-      isVisibleCart: false,
-    };
-  },
   computed: mapGetters({ totalPrice: "getProductCartFullValuePrice" }),
   methods: {
-    ...mapMutations(["deleteItemFromCart"]),
+    ...mapMutations(["deleteFullItemCountfromCart"]),
     getImgUrl(pic) {
       return require("../assets/" + pic);
     },
     removeFromCart(id) {
-      this.deleteItemFromCart(id);
+      this.deleteFullItemCountfromCart(id);
     },
   },
 };
@@ -93,10 +91,6 @@ export default {
     border-top: 1px solid #e8e8e8;
     border-left: 1px solid #e8e8e8;
     transform: rotate(45deg);
-  }
-  &-empty {
-    text-align: center;
-    font-size: 20px;
   }
   &-item {
     display: flex;
@@ -159,10 +153,21 @@ export default {
   &-total {
     display: flex;
     justify-content: space-between;
-    padding-top: 20px;
+    padding: 20px 0 30px;
     font-size: 20px;
     font-weight: 700;
     color: #222;
+  }
+  &-go {
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+    font-weight: 700;
+    font-size: 20px;
+    border: 1px solid #f26376;
+    color: #fff;
+    background: #f26376;
+    transition: all 0.3s ease;
   }
 }
 </style>

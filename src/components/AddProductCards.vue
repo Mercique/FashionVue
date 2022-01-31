@@ -1,11 +1,11 @@
 <template>
   <div class="product__cards">
     <div class="card" v-for="card in cards" :key="card.id">
-      <a href="#" class="card__img-link">
+      <router-link to="/dev" class="card__img-link">
         <img :src="getImgUrl(card.img)" class="card__img" :alt="card.alt" />
-      </a>
+      </router-link>
       <div class="card__box">
-        <a href="#" class="card__title-link">{{ card.title }}</a>
+        <router-link to="/dev" class="card__title-link">{{ card.title }}</router-link>
         <p class="card__text">
           {{ card.text }}
         </p>

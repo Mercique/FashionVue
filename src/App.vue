@@ -3,12 +3,7 @@
     <div class="wrapper">
       <div class="wrapper__top">
         <header-comp />
-        <top />
-        <sale />
-        <main class="main center">
-          <product-cards />
-        </main>
-        <delivery />
+        <router-view></router-view>
       </div>
       <footer-comp />
     </div>
@@ -17,23 +12,12 @@
 
 <script>
 import { mapActions } from "vuex";
-import FooterComp from "./components/FooterComp.vue";
-import HeaderComp from "./components/HeaderComp.vue";
-import Sale from "./components/Sale.vue";
-import Top from "./components/Top.vue";
-import Delivery from './components/Delivery.vue';
-import ProductCards from './components/ProductCards.vue';
+import HeaderComp from './components/HeaderComp.vue';
+import FooterComp from './components/FooterComp.vue';
 
 export default {
   name: "App",
-  components: {
-    HeaderComp,
-    Top,
-    Sale,
-    FooterComp,
-    Delivery,
-    ProductCards,
-  },
+  components: { FooterComp, HeaderComp },
   data() {
     return {
       url: "/json/cards.json",
@@ -61,13 +45,12 @@ export default {
 }
 
 .wrapper {
-  min-height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   &__top {
     flex-grow: 1;
     position: relative;
-    overflow: hidden;
   }
 }
 </style>
