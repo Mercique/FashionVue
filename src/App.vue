@@ -6,22 +6,7 @@
         <top />
         <sale />
         <main class="main center">
-          <h2 class="main__heading">Fetured Items</h2>
-          <p class="main__p">
-            Shop for items based on what we featured in this week
-          </p>
-          <p class="main__error" v-if="!cards.length">
-            На данный момент товаров нет!
-          </p>
-          <div class="main__show" v-else>
-            <product-cards :cards="currentElements" />
-            <pagination
-              :cur="page"
-              :n="n"
-              :length="cards.length"
-              @paginate="changePage"
-            />
-          </div>
+          <product-cards />
         </main>
         <delivery />
       </div>
@@ -31,14 +16,13 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import FooterComp from "./components/FooterComp.vue";
 import HeaderComp from "./components/HeaderComp.vue";
-import ProductCards from "./components/ProductCards.vue";
 import Sale from "./components/Sale.vue";
 import Top from "./components/Top.vue";
-import Pagination from "./components/Pagination.vue";
-import { mapGetters, mapActions } from "vuex";
 import Delivery from './components/Delivery.vue';
+import ProductCards from './components/ProductCards.vue';
 
 export default {
   name: "App",
@@ -47,30 +31,15 @@ export default {
     Top,
     Sale,
     FooterComp,
-    ProductCards,
-    Pagination,
     Delivery,
+    ProductCards,
   },
   data() {
     return {
       url: "/json/cards.json",
-      page: 1,
-      n: 6,
     };
   },
-  computed: {
-    ...mapGetters({ cards: "getCards" }),
-    currentElements() {
-      const { n, page } = this;
-      return this.cards.slice(n * (page - 1), n * (page - 1) + n);
-    },
-  },
-  methods: {
-    ...mapActions(["fetchCards"]),
-    changePage(p) {
-      this.page = p;
-    },
-  },
+  methods: mapActions(["fetchCards"]),
   async mounted() {
     this.fetchCards(this.url);
   },
@@ -99,29 +68,6 @@ export default {
     flex-grow: 1;
     position: relative;
     overflow: hidden;
-  }
-}
-
-.main {
-  padding-top: 96px;
-  &__heading {
-    font-size: 30px;
-    line-height: 36px;
-    text-align: center;
-    color: #222222;
-  }
-  &__p {
-    margin-top: 6px;
-    margin-bottom: 48px;
-    text-align: center;
-    color: #9f9f9f;
-  }
-  &__error {
-    text-align: center;
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 35px;
-    color: #f16d7f;
   }
 }
 </style>
