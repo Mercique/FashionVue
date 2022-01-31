@@ -1,11 +1,11 @@
 <template>
   <div class="product__cards">
     <div class="card" v-for="card in cards" :key="card.id">
-      <router-link to="/dev" class="card__img-link">
-        <img :src="getImgUrl(card.img)" class="card__img" :alt="card.alt" />
+      <router-link :to="{ path: '/product', query: { card: card.id} }" class="card__img-link">
+        <img :src="require('../assets/' + card.img)" class="card__img" :alt="card.alt" />
       </router-link>
       <div class="card__box">
-        <router-link to="/dev" class="card__title-link">{{ card.title }}</router-link>
+        <router-link :to="{ path: '/product', query: { card: card.id} }" class="card__title-link">{{ card.title }}</router-link>
         <p class="card__text">
           {{ card.text }}
         </p>
@@ -51,9 +51,6 @@ export default {
   },
   methods: {
     ...mapMutations(["AddToProductCart"]),
-    getImgUrl(pic) {
-      return require("../assets/" + pic);
-    },
     addToCart(card) {
       const item = {
         id: card.id,
@@ -63,7 +60,6 @@ export default {
         price: card.price,
         count: 1
       };
-
       this.AddToProductCart(item);
     }
   },

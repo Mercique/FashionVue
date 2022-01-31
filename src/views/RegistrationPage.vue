@@ -110,7 +110,7 @@ import Breadcrumb from "../components/Breadcrumb.vue";
 
 export default {
   components: { Breadcrumb },
-  name: "Registation",
+  name: "RegistationPage",
   data() {
     return {
       heading: "REGISTRATION",

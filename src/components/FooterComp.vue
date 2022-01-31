@@ -235,6 +235,7 @@ export default {
       height: 32px;
       color: #000000;
       background-color: #ffffff;
+      transition: all .3s ease;
       &:hover {
         background-color: #f16d7f;
         path {

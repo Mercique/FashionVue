@@ -3,11 +3,11 @@
     <empty-cart v-if="!cart.length" />
     <div class="modal__cart-full" v-else>
       <div class="modal__cart-item" v-for="item in cart" :key="item.id">
-        <router-link to="/dev" class="modal__cart-item-img">
+        <router-link :to="{ path: '/product', query: { card: item.id} }" class="modal__cart-item-img">
           <img :src="getImgUrl(item.img)" :alt="item.alt" />
         </router-link>
         <div class="modal__cart-item-info">
-          <router-link to="/dev" class="modal__cart-item-title">{{ item.title }}</router-link>
+          <router-link :to="{ path: '/product', query: { card: item.id} }" class="modal__cart-item-title">{{ item.title }}</router-link>
           <span class="modal__cart-item-price"
             >{{ item.count }} x ${{ item.price }}</span
           >
