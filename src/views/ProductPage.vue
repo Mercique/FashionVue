@@ -18,7 +18,7 @@
           </svg>
         </button>
         <div class="product__img">
-          <img :src="require('../assets/' + cards[id].img)" :alt="cards[id].alt" />
+          <img :src="getProduct(cards[id].img)" :alt="cards[id].alt" />
         </div>
         <button type="button" class="slider__btn right">
           <svg
@@ -57,7 +57,7 @@
                   portals.
                 </p>
               </div>
-              <span class="description__price">${{ cards[id].price }}</span>
+              <span class="description__price">${{ cards[this.id].price }}</span>
               <span class="line"></span>
               <div class="description__sort">
                 <details class="description__details">
@@ -132,7 +132,9 @@
         </div>
       </div>
     </div>
-    <add-product-cards :cards="currentCards" />
+    <div class="ProductCards-margin">
+      <add-product-cards :cards="currentCards" />
+    </div>
   </div>
 </template>
 
@@ -168,11 +170,15 @@ export default {
         count: 1
       };
       this.AddToProductCart(item);
+    },
+    getProduct(img) {
+      this.id = +this.$route.query.card - 1;
+      return require('../assets/' + img);
     }
   },
   async created() {
     this.id = +this.$route.query.card - 1;
-  },
+  }
 };
 </script>
 
@@ -304,5 +310,8 @@ export default {
       }
     }
   }
+}
+.ProductCards-margin {
+  margin: 68px 0 128px;
 }
 </style>
