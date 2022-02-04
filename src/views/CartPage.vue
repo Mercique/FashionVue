@@ -86,7 +86,7 @@
           </div>
           <div class="cart__btns">
             <button type="button" class="btn" @click="clearCart">CLEAR SHOPPING CART</button>
-            <router-link to="/dev" class="btn">CONTINUE SHOPPING</router-link>
+            <router-link to="/catalog" class="btn">CONTINUE SHOPPING</router-link>
           </div>
         </div>
         <div class="cart__total">

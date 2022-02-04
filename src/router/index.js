@@ -23,6 +23,11 @@ const router = new VueRouter({
       props: (route) => ({ card: route.query.card }),
     },
     {
+      path: "/catalog",
+      name: "catalog",
+      component: () => import("../views/CatalogPage.vue"),
+    },
+    {
       path: "/registration",
       name: "registration",
       component: () => import("../views/RegistrationPage.vue"),
@@ -59,6 +64,7 @@ const getTitleByRoutes = (routeName) => {
   return {
     home: "Home | Fashion shop",
     product: "Product | Fashion Shop",
+    catalog: "Catalog | Fashion Shop",
     registration: "Registration | Fashion Shop",
     cartpage: "Cart | Fashion shop",
     notfound: "404: Error, page not found or dev!",
