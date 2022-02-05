@@ -16,7 +16,7 @@ export default {
           return state.productCart[idx].count;
         }
       } else {
-        state.productCart.push(payload);
+        state.productCart = [...state.productCart, payload];
       }
     },
     deleteItemFromCart(state, id) {
