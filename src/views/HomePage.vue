@@ -7,11 +7,9 @@
       <p class="section__p">
         Shop for items based on what we featured in this week
       </p>
-      <p class="section__error" v-if="!cards.length">
-        There are no products at the moment!
-      </p>
+      <empty v-if="!cards.length" />
       <add-product-cards :cards="currentElements" />
-      <div class="section__link">
+      <div class="section__link" v-if="cards.length">
         <router-link to="/catalog" class="link">Browse All Product</router-link>
       </div>
     </section>
@@ -25,6 +23,7 @@ import Top from "../components/Top.vue";
 import Sale from "../components/Sale.vue";
 import Delivery from "../components/Delivery.vue";
 import AddProductCards from '../components/AddProductCards.vue';
+import Empty from '../components/Empty.vue';
 
 export default {
   name: "HomePage",
@@ -33,6 +32,7 @@ export default {
     Sale,
     Delivery,
     AddProductCards,
+    Empty,
   },
   computed: {
     ...mapGetters({ cards: "getCards" }),
@@ -57,14 +57,6 @@ export default {
     margin-bottom: 48px;
     text-align: center;
     color: #9f9f9f;
-  }
-  &__error {
-    margin-bottom: 64px;
-    text-align: center;
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 35px;
-    color: #f16d7f;
   }
   &__link {
     display: flex;

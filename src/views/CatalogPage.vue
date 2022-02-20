@@ -1,7 +1,8 @@
 <template>
   <div class="CatalogPage">
     <breadcrumb :heading="heading" />
-    <div class="catalog center">
+    <empty v-if="!cards.length" style="margin-top: 100px" />
+    <div class="catalog center" v-else>
       <div class="catalog__filter">
         <div class="catalog__form">
           <div class="catalog__filter-left">
@@ -89,10 +90,11 @@ import { mapGetters } from "vuex";
 import AddProductCards from "../components/AddProductCards.vue";
 import Breadcrumb from "../components/Breadcrumb.vue";
 import Delivery from "../components/Delivery.vue";
+import Empty from '../components/Empty.vue';
 import Pagination from "../components/Pagination.vue";
 
 export default {
-  components: { Breadcrumb, Delivery, AddProductCards, Pagination },
+  components: { Breadcrumb, Delivery, AddProductCards, Pagination, Empty },
   name: "Catalog",
   data() {
     return {
