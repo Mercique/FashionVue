@@ -2,10 +2,12 @@ export default {
   state: {
     productCards: [],
     productCart: [],
+    history: [],
   },
   mutations: {
     AddToProductCards(state, payload) {
       state.productCards = payload;
+      state.history = payload;
     },
     AddToProductCart(state, payload) {
       const idx = state.productCart.findIndex((el) => el.id == payload.id);
@@ -33,6 +35,11 @@ export default {
     },
     clearFullCart(state) {
       state.productCart = [];
+    },
+    searchfilteredCards(state, text) {
+      state.productCards = state.history;
+      let regexp = new RegExp(text, 'i');
+      state.productCards = state.productCards.filter(product => regexp.test(product.title));
     }
   },
   getters: {
