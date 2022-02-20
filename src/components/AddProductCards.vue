@@ -1,11 +1,22 @@
 <template>
   <div class="product__cards">
     <div class="card" v-for="card in cards" :key="card.id">
-      <router-link :to="{ path: '/product', query: { card: card.id} }" class="card__img-link">
-        <img :src="require('../assets/' + card.img)" class="card__img" :alt="card.alt" />
+      <router-link
+        :to="{ path: `/catalog/${gender}/product`, query: { card: card.id } }"
+        class="card__img-link"
+      >
+        <img
+          :src="require('../assets/' + card.img)"
+          class="card__img"
+          :alt="card.alt"
+        />
       </router-link>
       <div class="card__box">
-        <router-link :to="{ path: '/product', query: { card: card.id} }" class="card__title-link">{{ card.title }}</router-link>
+        <router-link
+          :to="{ path: `/catalog/${gender}/product`, query: { card: card.id } }"
+          class="card__title-link"
+          >{{ card.title }}</router-link
+        >
         <p class="card__text">
           {{ card.text }}
         </p>
@@ -39,7 +50,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations } from "vuex";
 
 export default {
   name: "AddProductCards",
@@ -47,6 +58,9 @@ export default {
     cards: {
       type: Array,
       default: () => [],
+    },
+    gender: {
+      type: String,
     },
   },
   methods: {
@@ -58,10 +72,10 @@ export default {
         alt: card.alt,
         title: card.title,
         price: card.price,
-        count: 1
+        count: 1,
       };
       this.AddToProductCart(item);
-    }
+    },
   },
 };
 </script>

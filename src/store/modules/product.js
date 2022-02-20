@@ -53,6 +53,16 @@ export default {
         return a.price - b.price;
       });
     },
+    getGenderFilter(state, gender) {
+      state.productCards = state.history;
+      if (gender === "all") {
+        return state.productCards;
+      } else {
+        state.productCards = state.productCards.filter(
+          (el) => el.gender === gender
+        );
+      }
+    },
   },
   getters: {
     getProductCartFullValuePrice: (state) => {
@@ -65,6 +75,7 @@ export default {
       return state.productCart.reduce((prev, cur) => prev + cur.count, 0);
     },
     getCards: (state) => state.productCards,
+    getHistory: (state) => state.history,
     getCart: (state) => state.productCart,
   },
   actions: {

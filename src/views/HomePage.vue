@@ -10,7 +10,7 @@
       <empty v-if="!cards.length" />
       <add-product-cards :cards="currentElements" />
       <div class="section__link" v-if="cards.length">
-        <router-link to="/catalog" class="link">Browse All Product</router-link>
+        <router-link to="/catalog/all" class="link">Browse All Product</router-link>
       </div>
     </section>
     <delivery />

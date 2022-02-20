@@ -4,7 +4,7 @@
     <empty v-if="!cards.length" style="margin-top: 100px" />
     <div class="catalog center" v-else>
       <filter-catalog />
-      <add-product-cards :cards="currentElements" />
+      <add-product-cards :cards="currentElements" :gender="gender" />
       <div class="catalog__pagination">
         <pagination
           :cur="page"
@@ -19,22 +19,30 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 import AddProductCards from "../components/AddProductCards.vue";
 import Breadcrumb from "../components/Breadcrumb.vue";
 import Delivery from "../components/Delivery.vue";
-import Empty from '../components/Empty.vue';
-import FilterCatalog from '../components/FilterCatalog.vue';
+import Empty from "../components/Empty.vue";
+import FilterCatalog from "../components/FilterCatalog.vue";
 import Pagination from "../components/Pagination.vue";
 
 export default {
-  components: { Breadcrumb, Delivery, AddProductCards, Pagination, Empty, FilterCatalog },
+  components: {
+    Breadcrumb,
+    Delivery,
+    AddProductCards,
+    Pagination,
+    Empty,
+    FilterCatalog,
+  },
   name: "Catalog",
   data() {
     return {
       heading: "NEW ARRIVALS",
       page: 1,
       n: 9,
+      gender: "",
     };
   },
   computed: {
@@ -45,9 +53,17 @@ export default {
     },
   },
   methods: {
+    ...mapMutations(["getGenderFilter"]),
     changePage(p) {
       this.page = p;
     },
+    genderFilter() {
+      this.getGenderFilter(this.gender);
+    },
+  },
+  mounted() {
+    this.gender = this.$route.params.category;
+    this.genderFilter();
   },
 };
 </script>

@@ -18,7 +18,7 @@
           </svg>
         </button>
         <div class="product__img">
-          <img :src="getProduct(cards[id].img)" :alt="cards[id].alt" />
+          <img :src="getProduct(cardsHistory[id].img)" :alt="cardsHistory[id].alt" />
         </div>
         <button type="button" class="slider__btn right">
           <svg
@@ -39,13 +39,7 @@
         <div class="product__description">
           <div class="description">
             <div class="description__top">
-              <h4
-                class="description__heading"
-                v-if="cards[id].alt === 'model-women-pic'"
-              >
-                WOMEN COLLECTION
-              </h4>
-              <h4 class="description__heading" v-else>MEN COLLECTION</h4>
+              <h4 class="description__heading">{{ cardsHistory[id].gender.toUpperCase() }} COLLECTION</h4>
               <span class="subline"></span>
               <h3 class="description__title">MOSCHINO CHEAP AND CHIC</h3>
               <div class="description__case">
@@ -57,7 +51,7 @@
                   portals.
                 </p>
               </div>
-              <span class="description__price">${{ cards[this.id].price }}</span>
+              <span class="description__price">${{ cardsHistory[id].price }}</span>
               <span class="line"></span>
               <div class="description__sort">
                 <details class="description__details">
@@ -112,7 +106,7 @@
                   </summary>
                 </details>
               </div>
-              <button type="button" class="description__button" @click="addToCart(cards[id])">
+              <button type="button" class="description__button" @click="addToCart(cardsHistory[id])">
                 <svg
                   width="27"
                   height="25"
@@ -133,7 +127,7 @@
       </div>
     </div>
     <div class="ProductCards-margin">
-      <add-product-cards :cards="currentCards" />
+      <add-product-cards :cards="currentCards" :gender="gender" />
     </div>
   </div>
 </template>
@@ -150,10 +144,11 @@ export default {
     return {
       heading: "NEW ARRIVALS",
       id: "",
+      gender: "",
     };
   },
   computed: {
-    ...mapGetters({ cards: "getCards" }),
+    ...mapGetters({ cards: "getCards", cardsHistory: "getHistory" }),
     currentCards() {
       return this.cards.slice(0, 3);
     },
@@ -178,6 +173,7 @@ export default {
   },
   async created() {
     this.id = +this.$route.query.card - 1;
+    this.gender = this.$route.params.category;
   }
 };
 </script>
