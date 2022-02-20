@@ -38,9 +38,21 @@ export default {
     },
     searchfilteredCards(state, text) {
       state.productCards = state.history;
-      let regexp = new RegExp(text, 'i');
-      state.productCards = state.productCards.filter(product => regexp.test(product.title));
-    }
+      let regexp = new RegExp(text, "i");
+      state.productCards = state.productCards.filter((product) =>
+        regexp.test(product.title)
+      );
+    },
+    getProductCardsHigh(state) {
+      state.productCards.sort((a, b) => {
+        return b.price - a.price;
+      });
+    },
+    getProductCardsLow(state) {
+      state.productCards.sort((a, b) => {
+        return a.price - b.price;
+      });
+    },
   },
   getters: {
     getProductCartFullValuePrice: (state) => {
