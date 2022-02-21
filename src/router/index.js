@@ -17,20 +17,15 @@ const router = new VueRouter({
       component: () => import("../views/HomePage.vue"),
     },
     {
+      path: "/catalog/:category",
+      name: "catalog",
+      component: () => import("../views/CatalogPage.vue"),
+    },
+    {
       path: "/catalog/:category/product",
       name: "product",
       component: () => import("../views/ProductPage.vue"),
       props: (route) => ({ card: route.query.card }),
-    },
-    {
-      path: "/catalog/:category",
-      name: "catalog",
-      component: () => import("../views/CatalogPage.vue"),
-    },
-    {
-      path: "/catalog/:category",
-      name: "catalog",
-      component: () => import("../views/CatalogPage.vue"),
     },
     {
       path: "/registration",

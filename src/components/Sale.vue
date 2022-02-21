@@ -49,7 +49,7 @@ export default {
 
 <style lang="scss" scoped>
 .sale {
-  padding-top: 64px;
+  padding-top: 65px;
   .sale__content {
     display: flex;
     gap: 30px;
@@ -88,6 +88,47 @@ export default {
       line-height: 29px;
       text-align: center;
       color: #F16D7F;
+    }
+  }
+}
+
+@media (max-width: 1172px) {
+  .sale {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sale {
+    padding-top: 20px;
+    .sale__content {
+      gap: 18px;
+      margin-bottom: 19px;
+    }
+  }
+}
+
+@media (max-width: 562px) {
+  .sale {
+    padding-top: 64px;
+    .sale__content {
+      flex-direction: column;
+      margin-bottom: 32px;
+      gap: 32px;
+    }
+    .sale__item {
+      width: 100%;
+      img {
+        width: 100%;
+      }
+    }
+    .sale__item_big {
+      height: 111px;
+      img {
+        height: 100%;
+        object-fit: cover;
+      }
     }
   }
 }

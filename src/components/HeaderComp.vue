@@ -8,7 +8,11 @@
     </div>
     <div class="header__right">
       <div class="header__right-menu">
-        <button type="button" class="header__item" @click="isVisibleMenu = !isVisibleMenu">
+        <button
+          type="button"
+          class="header__item"
+          @click="isVisibleMenu = !isVisibleMenu"
+        >
           <svg
             width="32"
             height="23"
@@ -23,10 +27,14 @@
           </svg>
         </button>
         <transition name="fade">
-          <modal-menu v-show="isVisibleMenu" :class="{ isVisibleMenu }" @updateBool="checkMenu" />
+          <modal-menu
+            v-show="isVisibleMenu"
+            :class="{ isVisibleMenu }"
+            @updateBool="checkMenu"
+          />
         </transition>
       </div>
-      <router-link to="/registration" class="header__item">
+      <router-link to="/registration" class="header__item header__media">
         <svg
           width="29"
           height="29"
@@ -40,7 +48,7 @@
           />
         </svg>
       </router-link>
-      <div class="header__item header__cart">
+      <div class="header__item header__cart header__media">
         <button
           type="button"
           class="header__cart-btn"
@@ -77,8 +85,8 @@
 <script>
 import ModalCart from "./ModalCart.vue";
 import { mapGetters } from "vuex";
-import ModalMenu from './ModalMenu.vue';
-import Search from './Search.vue';
+import ModalMenu from "./ModalMenu.vue";
+import Search from "./Search.vue";
 
 export default {
   components: { ModalCart, ModalMenu, Search },
@@ -105,12 +113,12 @@ export default {
   methods: {
     checkMenu(bool) {
       this.isVisibleMenu = bool;
-    }
+    },
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .header {
   height: 75px;
   display: flex;
@@ -157,5 +165,27 @@ export default {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+@media (max-width: 1200px) {
+  .header {
+    padding-left: calc(16px + (32 - 16) * ((100vw - 375px) / (1200 - 375)));
+    padding-right: calc(16px + (32 - 16) * ((100vw - 375px) / (1200 - 375)));
+  }
+}
+
+@media (max-width: 667px) {
+  .header {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (max-width: 630px) {
+  .header {
+    &__media {
+      display: none;
+    }
+  }
 }
 </style>
