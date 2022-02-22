@@ -36,17 +36,18 @@
         <span class="modal__cart-total-text">TOTAL:</span>
         <span class="modal__cart-total-price">{{ totalPrice }}$</span>
       </div>
-      <router-link to="/cart" class="modal__cart-go">Go To Cart</router-link>
+      <button-go-to-cart />
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
+import ButtonGoToCart from './ButtonGoToCart.vue';
 import EmptyCart from './EmptyCart.vue';
 
 export default {
-  components: { EmptyCart },
+  components: { EmptyCart, ButtonGoToCart },
   name: "ModalCart",
   props: {
     cart: {
@@ -158,16 +159,14 @@ export default {
     font-weight: 700;
     color: #222;
   }
-  &-go {
-    display: flex;
-    justify-content: center;
-    padding: 15px 0;
-    font-weight: 700;
-    font-size: 20px;
-    border: 1px solid #f26376;
-    color: #fff;
-    background: #f26376;
-    transition: all 0.3s ease;
+}
+
+@media (max-width: 1349px) {
+  .modal__cart {
+    right: 6px;
+    &::before {
+      right: 12px;
+    }
   }
 }
 </style>

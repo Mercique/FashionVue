@@ -74,10 +74,10 @@ export default {
 
 <style lang="scss" scoped>
 .delivery {
-  height: 341px;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  padding: 104px 0;
   margin-top: 95px;
   color: #FBFBFB;
   background-color: #222222;
@@ -96,6 +96,23 @@ export default {
   }
   .item__text {
     font-weight: 300;
+  }
+}
+
+@media (max-width: 982px) {
+  .delivery {
+    flex-direction: column;
+    gap: 48px;
+    padding-top: 48px;
+    padding-bottom: 64px;
+  }
+}
+
+@media (max-width: 375px) {
+  .delivery {
+    gap: 46px;
+    padding-top: 48px;
+    padding-bottom: 81px;
   }
 }
 </style>

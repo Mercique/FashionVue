@@ -84,7 +84,7 @@ export default {
     cursor: pointer;
   }
   &-form {
-    width: 360px;
+    max-width: 360px;
     display: flex;
     &-field {
       width: 100%;
@@ -114,6 +114,14 @@ export default {
       &:hover {
         background: rgba(255, 255, 255, 0.25);
       }
+    }
+  }
+}
+
+@media (max-width: 470px) {
+  .search {
+    .search-form {
+      max-width: 224px;
     }
   }
 }

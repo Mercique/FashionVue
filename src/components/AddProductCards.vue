@@ -159,4 +159,22 @@ export default {
     }
   }
 }
+
+@media (max-width: 768px) {
+  .product__cards {
+    padding-left: calc(8px + (16 - 8) * ((100vw - 375px) / (768 - 375)));
+    padding-right: calc(8px + (16 - 8) * ((100vw - 375px) / (768 - 375)));
+    gap: 16px;
+    margin-bottom: 38px;
+  }
+}
+
+@media (max-width: 375px) {
+  .product__cards {
+    padding-left: 8px;
+    padding-right: 8px;
+    gap: 15px;
+    margin-bottom: 40px;
+  }
+}
 </style>
