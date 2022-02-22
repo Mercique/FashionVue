@@ -104,9 +104,6 @@ export default {
     isVisible() {
       this.$emit("updateBool", this.visible);
     },
-    isListener(e) {
-      this.showButton = e.matches;
-    },
   },
   mounted() {
     const mediaQuery = window.matchMedia("(max-width: 630px)");
