@@ -77,7 +77,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 104px 0;
+  padding-top: 104px;
+  padding-bottom: 104px;
   margin-top: 95px;
   color: #FBFBFB;
   background-color: #222222;
