@@ -14,7 +14,6 @@
         />
       </div>
     </div>
-    <delivery />
   </div>
 </template>
 
@@ -22,7 +21,6 @@
 import { mapGetters, mapMutations } from "vuex";
 import AddProductCards from "../components/AddProductCards.vue";
 import Breadcrumb from "../components/Breadcrumb.vue";
-import Delivery from "../components/Delivery.vue";
 import Empty from "../components/Empty.vue";
 import FilterCatalog from "../components/FilterCatalog.vue";
 import Pagination from "../components/Pagination.vue";
@@ -30,7 +28,6 @@ import Pagination from "../components/Pagination.vue";
 export default {
   components: {
     Breadcrumb,
-    Delivery,
     AddProductCards,
     Pagination,
     Empty,

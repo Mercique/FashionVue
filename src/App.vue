@@ -5,6 +5,7 @@
         <header-comp />
         <router-view></router-view>
       </div>
+      <delivery v-if="this.$route.name === 'catalog'"/>
       <footer-comp />
     </div>
   </div>
@@ -14,10 +15,11 @@
 import { mapActions } from "vuex";
 import HeaderComp from './components/HeaderComp.vue';
 import FooterComp from './components/FooterComp.vue';
+import Delivery from './components/Delivery.vue';
 
 export default {
   name: "App",
-  components: { FooterComp, HeaderComp },
+  components: { FooterComp, HeaderComp, Delivery },
   data() {
     return {
       url: "/json/cards.json",
