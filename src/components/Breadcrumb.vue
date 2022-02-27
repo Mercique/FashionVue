@@ -26,4 +26,17 @@ export default {
     color: #F16D7F;
   }
 }
+
+@media (max-width: 1200px) {
+  .breadcrumb {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (max-width: 425px) {
+  .breadcrumb {
+    justify-content: center;
+  }
+}
 </style>

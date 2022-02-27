@@ -107,4 +107,20 @@ export default {
     }
   }
 }
+
+@media (max-width: 1200px) {
+  .catalog__filter {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .catalog__filter .catalog__item[open] .filter-price {
+    left: 1px;
+  }
+}
+
+@media (max-width: 768px) {
+  .catalog__filter {
+    margin: 24px 0 40px;
+  }
+}
 </style>
