@@ -18,7 +18,10 @@
           </svg>
         </button>
         <div class="product__img">
-          <img :src="getProduct(cardsHistory[id].img)" :alt="cardsHistory[id].alt" />
+          <img
+            :src="getProduct(cardsHistory[id].img)"
+            :alt="cardsHistory[id].alt"
+          />
         </div>
         <button type="button" class="slider__btn right">
           <svg
@@ -39,7 +42,9 @@
         <div class="product__description">
           <div class="description">
             <div class="description__top">
-              <h4 class="description__heading">{{ cardsHistory[id].gender.toUpperCase() }} COLLECTION</h4>
+              <h4 class="description__heading">
+                {{ cardsHistory[id].gender.toUpperCase() }} COLLECTION
+              </h4>
               <span class="subline"></span>
               <h3 class="description__title">MOSCHINO CHEAP AND CHIC</h3>
               <div class="description__case">
@@ -51,7 +56,9 @@
                   portals.
                 </p>
               </div>
-              <span class="description__price">${{ cardsHistory[id].price }}</span>
+              <span class="description__price"
+                >${{ cardsHistory[id].price }}</span
+              >
               <span class="line"></span>
               <div class="description__sort">
                 <details class="description__details">
@@ -106,7 +113,11 @@
                   </summary>
                 </details>
               </div>
-              <button type="button" class="description__button" @click="addToCart(cardsHistory[id])">
+              <button
+                type="button"
+                class="description__button"
+                @click="addToCart(cardsHistory[id])"
+              >
                 <svg
                   width="27"
                   height="25"
@@ -145,12 +156,17 @@ export default {
       heading: "NEW ARRIVALS",
       id: "",
       gender: "",
+      mediaCards: false,
     };
   },
   computed: {
     ...mapGetters({ cards: "getCards", cardsHistory: "getHistory" }),
     currentCards() {
-      return this.cards.slice(0, 3);
+      if (this.mediaCards) {
+        return this.cards.slice(0, 2);
+      } else {
+        return this.cards.slice(0, 3);
+      }
     },
   },
   methods: {
@@ -162,19 +178,32 @@ export default {
         alt: card.alt,
         title: card.title,
         price: card.price,
-        count: 1
+        count: 1,
       };
       this.AddToProductCart(item);
     },
     getProduct(img) {
       this.id = +this.$route.query.card - 1;
-      return require('../assets/' + img);
-    }
+      return require("../assets/" + img);
+    },
   },
   async created() {
     this.id = +this.$route.query.card - 1;
     this.gender = this.$route.params.category;
-  }
+  },
+  mounted() {
+    const mediaQuery = window.matchMedia("(max-width: 1142px)");
+
+    this.mediaCards = mediaQuery.matches;
+
+    const isListener = (e) => (this.mediaCards = e.matches);
+
+    mediaQuery.addEventListener("change", isListener);
+
+    this.$once("hook:beforeDestroy", () =>
+      mediaQuery.removeEventListener("change", isListener)
+    );
+  },
 };
 </script>
 
@@ -248,7 +277,7 @@ export default {
       color: #4d4d4d;
     }
     .description__text {
-      width: 554px;
+      width: 568px;
       font-weight: 300;
       text-align: center;
       margin-top: 48px;
@@ -309,5 +338,31 @@ export default {
 }
 .ProductCards-margin {
   margin: 68px 0 128px;
+}
+
+@media (max-width: 646px) {
+  .product__card .product__description {
+    .description__text {
+      width: 326px;
+      line-height: 20px;
+    }
+    .line {
+      width: 175px;
+    }
+    .filter-rotate {
+      font-size: 10px;
+      line-height: 12px;
+      svg {
+        transition: transform .2s ease;
+      }
+    }
+    .description__details[open] {
+      .filter-rotate {
+        svg {
+          transform: rotate(-180deg);
+        }
+      }
+    }
+  }
 }
 </style>

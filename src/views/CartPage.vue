@@ -319,4 +319,120 @@ export default {
     }
   }
 }
+
+@media (max-width: 1172px) {
+  .cart {
+    .cart__container {
+      justify-content: normal;
+      flex-direction: column;
+      align-items: center;
+      gap: 64px;
+    }
+    .cart__total {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      .cart__total-adress {
+        width: 360px;
+        margin-top: 0;
+      }
+      .cart__total-box {
+        width: 360px;
+        margin-top: 39px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .cart {
+    padding-top: 59px;
+    padding-bottom: 147px;
+    .cart__container {
+      padding: 0 16px;
+    }
+    .cart__box {
+      width: 100%;
+    }
+    .cart__btns {
+      justify-content: center;
+      gap: 48px;
+    }
+  }
+}
+
+@media (max-width: 656px) {
+  .cart {
+    .cart__btns {
+      gap: 9px;
+    }
+    .cart__total {
+      flex-direction: column;
+      justify-content: normal;
+      align-items: center;
+      gap: 48px;
+      .cart__total-adress {
+        margin-bottom: 0;
+      }
+      .cart__total-box {
+        margin-top: 0;
+      }
+    }
+    .delete-btn {
+      display: flex;
+      padding-top: 6px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .cart {
+    padding-top: 39px;
+    padding-bottom: 96px;
+    .cart__cards {
+      align-items: center;
+    }
+    .cart__item {
+      width: 360px;
+      height: 188px;
+      img {
+        height: 188px;
+      }
+    }
+    .cart__item-info {
+      padding: 14px 12px 38px 17px;
+      gap: 26px;
+      justify-content: normal;
+    }
+    .cart__item-title {
+      font-size: 16px;
+      line-height: 19px;
+    }
+    .cart__item-box {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      font-size: 14px;
+      line-height: 17px;
+    }
+    .delete-btn svg {
+      width: 10px;
+      height: 10px;
+    }
+    .cart__btns {
+      .btn {
+        width: 175px;
+        height: 33px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+      }
+    }
+    .cart__container {
+      padding: 0 8px;
+    }
+  }
+}
 </style>
