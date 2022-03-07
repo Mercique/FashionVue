@@ -25,7 +25,6 @@ const router = new VueRouter({
       path: "/catalog/:category/product",
       name: "product",
       component: () => import("../views/ProductPage.vue"),
-      props: (route) => ({ card: route.query.card }),
     },
     {
       path: "/registration",

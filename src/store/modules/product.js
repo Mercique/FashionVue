@@ -82,10 +82,16 @@ export default {
     async fetchCards(ctx, url) {
       try {
         const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(response.status);
+        }
         const data = await response.json();
         ctx.commit("AddToProductCards", data);
-      } catch {
+      } catch (error) {
+        console.log(error.message);
         ctx.commit("AddToProductCards", []);
+      } finally {
+        console.log("finally");
       }
     },
   },

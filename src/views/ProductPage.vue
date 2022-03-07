@@ -19,8 +19,8 @@
         </button>
         <div class="product__img">
           <img
-            :src="getProduct(cardsHistory[id].img)"
-            :alt="cardsHistory[id].alt"
+            :src="require(`../assets/${cards[idx].img}`)"
+            :alt="cards[idx].alt"
           />
         </div>
         <button type="button" class="slider__btn right">
@@ -43,7 +43,8 @@
           <div class="description">
             <div class="description__top">
               <h4 class="description__heading">
-                {{ cardsHistory[id].gender.toUpperCase() }} COLLECTION
+                {{ cards[idx].gender.toUpperCase() }}
+                COLLECTION
               </h4>
               <span class="subline"></span>
               <h3 class="description__title">MOSCHINO CHEAP AND CHIC</h3>
@@ -56,9 +57,7 @@
                   portals.
                 </p>
               </div>
-              <span class="description__price"
-                >${{ cardsHistory[id].price }}</span
-              >
+              <span class="description__price">${{ cards[idx].price }}</span>
               <span class="line"></span>
               <div class="description__sort">
                 <details class="description__details">
@@ -116,7 +115,7 @@
               <button
                 type="button"
                 class="description__button"
-                @click="addToCart(cardsHistory[id])"
+                @click="addToCart(cards[idx])"
               >
                 <svg
                   width="27"
@@ -154,18 +153,19 @@ export default {
   data() {
     return {
       heading: "NEW ARRIVALS",
-      id: "",
+      idx: "",
       gender: "",
       mediaCards: false,
     };
   },
   computed: {
-    ...mapGetters({ cards: "getCards", cardsHistory: "getHistory" }),
+    ...mapGetters({ cards: "getCards" }),
     currentCards() {
+      const cards = this.cards.filter((card) => card.id !== +this.$route.query.card);
       if (this.mediaCards) {
-        return this.cards.slice(0, 2);
+        return cards.slice(0, 2);
       } else {
-        return this.cards.slice(0, 3);
+        return cards.slice(0, 3);
       }
     },
   },
@@ -178,18 +178,25 @@ export default {
         alt: card.alt,
         title: card.title,
         price: card.price,
+        gender: card.gender,
         count: 1,
       };
       this.AddToProductCart(item);
     },
-    getProduct(img) {
-      this.id = +this.$route.query.card - 1;
-      return require("../assets/" + img);
-    },
   },
-  async created() {
-    this.id = +this.$route.query.card - 1;
-    this.gender = this.$route.params.category;
+  watch: {
+    "$route.query.card": {
+      immediate: true,
+      handler() {
+        this.idx = this.cards.findIndex((card) => card.id === +this.$route.query.card);
+      },
+    },
+    "$route.params.category": {
+      immediate: true,
+      handler() {
+        this.gender = this.$route.params.category;
+      },
+    },
   },
   mounted() {
     const mediaQuery = window.matchMedia("(max-width: 1142px)");
@@ -263,6 +270,13 @@ export default {
       font-weight: 300;
       color: #f16d7f;
     }
+    .description__details[open] {
+      .filter-rotate {
+        svg {
+          transform: rotate(-180deg);
+        }
+      }
+    }
     .subline {
       width: 63px;
       height: 3px;
@@ -305,7 +319,11 @@ export default {
       display: flex;
       align-items: center;
       gap: 9px;
+      cursor: pointer;
       color: #5e5e5e;
+      svg {
+        transition: transform 0.2s ease;
+      }
     }
     .description__button {
       width: 212px;
@@ -353,14 +371,7 @@ export default {
       font-size: 10px;
       line-height: 12px;
       svg {
-        transition: transform .2s ease;
-      }
-    }
-    .description__details[open] {
-      .filter-rotate {
-        svg {
-          transform: rotate(-180deg);
-        }
+        transition: transform 0.2s ease;
       }
     }
   }

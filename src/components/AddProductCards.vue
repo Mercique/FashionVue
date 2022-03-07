@@ -71,6 +71,7 @@ export default {
         img: card.img,
         alt: card.alt,
         title: card.title,
+        gender: card.gender,
         price: card.price,
         count: 1,
       };

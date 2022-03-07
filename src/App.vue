@@ -5,7 +5,7 @@
         <header-comp />
         <router-view></router-view>
       </div>
-      <delivery v-if="this.$route.name === 'catalog'"/>
+      <delivery v-if="this.$route.name === 'catalog'" />
       <footer-comp />
     </div>
   </div>
@@ -13,9 +13,9 @@
 
 <script>
 import { mapActions } from "vuex";
-import HeaderComp from './components/HeaderComp.vue';
-import FooterComp from './components/FooterComp.vue';
-import Delivery from './components/Delivery.vue';
+import HeaderComp from "./components/HeaderComp.vue";
+import FooterComp from "./components/FooterComp.vue";
+import Delivery from "./components/Delivery.vue";
 
 export default {
   name: "App",
@@ -26,7 +26,7 @@ export default {
     };
   },
   methods: mapActions(["fetchCards"]),
-  async mounted() {
+  async created() {
     this.fetchCards(this.url);
   },
 };

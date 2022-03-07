@@ -7,12 +7,12 @@
         <div class="cart__box">
           <div class="cart__cards">
             <div class="cart__item" v-for="item in cart" :key="item.id">
-              <router-link :to="{ path: '/product', query: { card: item.id} }" class="cart__item-img">
+              <router-link :to="{ path: `/catalog/${item.gender}/product`, query: { card: item.id} }" class="cart__item-img">
                 <img :src="require('../assets/' + item.img)" :alt="item.alt" />
               </router-link>
               <div class="cart__item-info">
                 <div class="cart__item-heading">
-                  <router-link :to="{ path: '/product', query: { card: item.id} }" class="cart__item-title">{{
+                  <router-link :to="{ path: `/catalog/${item.gender}/product`, query: { card: item.id} }" class="cart__item-title">{{
                     item.title
                   }}</router-link>
                   <button
