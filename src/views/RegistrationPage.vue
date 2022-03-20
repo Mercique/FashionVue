@@ -257,4 +257,36 @@ export default {
     }
   }
 }
+
+@media (max-width: 1200px) {
+  .registration {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (max-width: 1067px) {
+  .registration {
+    padding-top: 40px;
+    justify-content: center;
+    .registration-right {
+      max-width: 354px;
+    }
+    .registration__heading, .registration__subtext, .list-text {
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .registration {
+    padding-left: 8px;
+    padding-right: 8px;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+}
 </style>
